@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit Lagon — Location de matériel de plage & snorkeling à Saint-Gilles-les-Bains</title>
+<meta name="description" content="Louez glacière, parasol, kit snorkeling ou caméra 360° étanche à Saint-Gilles-les-Bains, La Réunion. Retrait à l'Ermitage, réservation par créneau.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lagoon-deep:#0B4F4A;
+    --lagoon-bright:#1B8A82;
+    --sand:#F1E6CE;
+    --sand-light:#FAF5E9;
+    --coral:#E8622E;
+    --ink:#132420;
+    --ink-soft:rgba(19,36,32,0.7);
+    --line:rgba(19,36,32,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sand-light);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0 0 0.4em 0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  .skip-link{position:absolute;left:-999px;}
+  .skip-link:focus{left:12px;top:12px;background:var(--sand);padding:8px 14px;border-radius:6px;z-index:20;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:10;
+    background:var(--sand-light);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+  .logo{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);}
+  .logo-mark{width:28px;height:28px;flex:none;}
+  nav ul{list-style:none;display:flex;gap:28px;margin:0;padding:0;}
+  nav a{text-decoration:none;font-size:0.95rem;color:var(--ink);border-bottom:1px solid transparent;padding-bottom:2px;}
+  nav a:hover{border-color:var(--coral);}
+  .nav-cta{background:var(--coral);color:white;padding:9px 18px;border-radius:100px;text-decoration:none;font-size:0.92rem;font-weight:500;}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink);}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    background:linear-gradient(160deg,var(--lagoon-deep) 0%,var(--lagoon-bright) 100%);
+    color:var(--sand-light);
+    overflow:hidden;
+    padding:96px 0 0 0;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:end;position:relative;z-index:2;}
+  .hero-eyebrow{font-size:0.95rem;color:var(--sand);opacity:0.85;margin-bottom:18px;}
+  .hero h1{font-size:clamp(2.3rem,4.4vw,3.6rem);line-height:1.05;color:white;max-width:11.5ch;}
+  .hero p{font-size:1.1rem;max-width:42ch;color:rgba(255,255,255,0.88);margin-top:18px;}
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:100px;text-decoration:none;
+    font-weight:500;font-size:0.98rem;
+  }
+  .btn-primary{background:var(--coral);color:white;}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.55);color:white;}
+  .hero-figure{
+    position:relative;
+    align-self:end;
+    padding-bottom:0;
+  }
+  .wave-svg{width:100%;height:auto;display:block;}
+  .hero-stats{
+    display:flex;gap:30px;
+    padding:26px 0 40px 0;
+    border-top:1px solid rgba(255,255,255,0.22);
+    margin-top:54px;
+  }
+  .hero-stats div{font-size:0.88rem;color:rgba(255,255,255,0.82);}
+  .hero-stats strong{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:white;font-weight:500;}
+
+  section{padding:76px 0;}
+  .section-head{max-width:56ch;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.2rem);}
+  .section-head p{color:var(--ink-soft);margin-top:10px;}
+
+  /* Comment ça marche */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
+  .step{padding:28px 24px 28px 0;border-bottom:1px solid var(--line);position:relative;}
+  .step:not(:last-child){border-right:1px solid var(--line);padding-right:24px;}
+  .step-index{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--lagoon-bright);font-weight:500;line-height:1;margin-bottom:14px;}
+  .step h3{font-size:1.05rem;margin-bottom:8px;}
+  .step p{color:var(--ink-soft);font-size:0.94rem;margin:0;}
+
+  /* Catalogue */
+  .cat-group{margin-bottom:14px;}
+  .cat-group-title{
+    font-family:'Fraunces',serif;font-size:1.2rem;font-weight:500;
+    padding:14px 0;border-top:1px solid var(--ink);
+    display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .cat-group-title span{font-family:'Work Sans',sans-serif;font-size:0.82rem;color:var(--ink-soft);font-weight:400;}
+  table.price{width:100%;border-collapse:collapse;font-size:0.95rem;}
+  table.price th{
+    text-align:left;font-weight:500;color:var(--ink-soft);font-size:0.82rem;
+    padding:8px 10px;border-bottom:1px solid var(--line);
+  }
+  table.price td{padding:14px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.price td.num, table.price th.num{text-align:right;white-space:nowrap;}
+  table.price tr:hover td{background:rgba(27,138,130,0.05);}
+  .item-name{font-weight:500;}
+  .item-desc{color:var(--ink-soft);font-size:0.86rem;margin-top:2px;}
+  .caution{color:var(--coral);font-weight:500;}
+
+  /* Zone / modalités */
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .info-card{border-top:2px solid var(--lagoon-bright);padding-top:16px;}
+  .info-card h3{font-size:1.02rem;margin-bottom:8px;}
+  .info-card p{color:var(--ink-soft);font-size:0.94rem;margin:0;}
+
+  /* Réservation / contact */
+  .cta-band{
+    background:var(--ink);color:var(--sand-light);border-radius:18px;
+    padding:52px 44px;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;
+  }
+  .cta-band h2{color:white;font-size:1.9rem;}
+  .cta-band p{color:rgba(250,245,233,0.78);margin-top:10px;max-width:46ch;}
+  .cta-band .btn-primary{margin-top:6px;}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;}
+  .footer-grid .logo{margin-bottom:6px;}
+  footer p{color:var(--ink-soft);font-size:0.86rem;margin:4px 0;}
+  footer a.mail{color:var(--lagoon-deep);text-decoration:underline;}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-figure{order:-1;}
+    .steps{grid-template-columns:1fr;}
+    .step, .step:not(:last-child){border-right:none;padding-right:0;}
+    .info-grid{grid-template-columns:1fr;}
+    .cta-band{grid-template-columns:1fr;padding:36px 26px;}
+    nav ul{display:none;}
+    .menu-toggle{display:block;}
+    .nav-cta{display:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#main">
+      <svg class="logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="13" stroke="#0B4F4A" stroke-width="1.6"/>
+        <path d="M4 15c2.5 2 5 2 7.5 0s5-2 7.5 0 5 2 7.5 0" stroke="#1B8A82" stroke-width="1.6" fill="none"/>
+        <path d="M4 19c2.5 2 5 2 7.5 0s5-2 7.5 0 5 2 7.5 0" stroke="#E8622E" stroke-width="1.4" fill="none" opacity="0.8"/>
+      </svg>
+      Kit Lagon
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="#catalogue">Nos kits</a></li>
+        <li><a href="#modalites">Modalités</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#reserver">Réserver</a>
+    <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="hero-eyebrow">Saint-Gilles-les-Bains · La Réunion</p>
+        <h1>Le lagon vous attend, pas besoin de tout apporter</h1>
+        <p>Glacière, parasol, kit snorkeling ou caméra 360° étanche : réservez en ligne, récupérez le matériel sur un créneau fixe près de la plage, et profitez.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalogue">Voir les kits</a>
+          <a class="btn btn-ghost" href="#comment-ca-marche">Comment ça marche</a>
+        </div>
+      </div>
+      <div class="hero-figure" aria-hidden="true">
+        <svg class="wave-svg" viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="300" cy="90" r="46" fill="#F1E6CE" opacity="0.9"/>
+          <path d="M0 200 Q 60 170 120 200 T 240 200 T 360 200 T 480 200 V360 H0 Z" fill="#0E5C56"/>
+          <path d="M0 240 Q 60 215 120 240 T 240 240 T 360 240 T 480 240 V360 H0 Z" fill="#0A423E"/>
+          <path d="M0 280 Q 60 260 120 280 T 240 280 T 360 280 T 480 280 V360 H0 Z" fill="#062F2C"/>
+          <g transform="translate(60,150)">
+            <path d="M0 40 L40 0 L80 40 Z" fill="#E8622E"/>
+            <rect x="36" y="40" width="8" height="30" fill="#F1E6CE"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="wrap hero-stats">
+      <div><strong>5 min</strong>à pied de la plage de l'Ermitage</div>
+      <div><strong>10&nbsp;+</strong>kits snorkeling & plage disponibles</div>
+      <div><strong>0 attente</strong>créneau réservé à l'avance</div>
+    </div>
+  </section>
+
+  <section id="comment-ca-marche">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Trois étapes avant la baignade</h2>
+        <p>Pas de compte compliqué ni de matériel à trimballer depuis votre logement.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-index">1</div>
+          <h3>Choisissez vos kits</h3>
+          <p>Pack plage, snorkeling, caméra 360°... combinez plusieurs articles et quantités dans un même panier.</p>
+        </div>
+        <div class="step">
+          <div class="step-index">2</div>
+          <h3>Réservez un créneau</h3>
+          <p>Retrait à l'Ermitage ou livraison selon les disponibilités, sur un créneau fixe que vous choisissez.</p>
+        </div>
+        <div class="step">
+          <div class="step-index">3</div>
+          <h3>Profitez, puis rendez</h3>
+          <p>État des lieux avec photos horodatées à la remise et au retour, caution prise par carte sur place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogue" style="background:var(--sand);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Nos kits & tarifs</h2>
+        <p>Tarif dégressif selon la durée de location. Caution prise par carte (pré-autorisation) à la remise du matériel.</p>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-title">Pack plage<span>sans réservation d'emplacement</span></div>
+        <table class="price">
+          <thead>
+            <tr><th>Kit</th><th class="num">1–2 j</th><th class="num">3–5 j</th><th class="num">+5 j</th><th class="num">Caution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="item-name">Glacière + pain de glace</div><div class="item-desc">Idéale pour garder boissons et pique-nique au frais</div></td>
+              <td class="num">7 €</td><td class="num">5,50 €</td><td class="num">4 €</td><td class="num caution">50 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Parasol + pied</div><div class="item-desc">Pour s'abriter du soleil, à installer vous-même</div></td>
+              <td class="num">6 €</td><td class="num">4,50 €</td><td class="num">3 €</td><td class="num caution">30 €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-title">Snorkeling<span>masque, tuba, palmes</span></div>
+        <table class="price">
+          <thead>
+            <tr><th>Kit</th><th class="num">1–2 j</th><th class="num">3–5 j</th><th class="num">+5 j</th><th class="num">Caution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="item-name">Kit PMT</div><div class="item-desc">Palmes, masque et tuba classiques</div></td>
+              <td class="num">17 €</td><td class="num">15 €</td><td class="num">13 €</td><td class="num caution">80 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Palmes + masque Easybreath</div><div class="item-desc">Masque facial intégral et palmes réglables</div></td>
+              <td class="num">17 €</td><td class="num">15 €</td><td class="num">13 €</td><td class="num caution">80 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Masque + tuba</div></td>
+              <td class="num">10 €</td><td class="num">9 €</td><td class="num">8 €</td><td class="num caution">40 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Masque Easybreath seul</div></td>
+              <td class="num">10 €</td><td class="num">9 €</td><td class="num">8 €</td><td class="num caution">40 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Palmes seules</div></td>
+              <td class="num">9 €</td><td class="num">8 €</td><td class="num">7 €</td><td class="num caution">40 €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-title">Caméra 360° étanche<span>seule ou avec kit snorkeling</span></div>
+        <table class="price">
+          <thead>
+            <tr><th>Kit</th><th class="num">1–2 j</th><th class="num">3–5 j</th><th class="num">+5 j</th><th class="num">Caution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="item-name">Caméra 360° + accessoires aquatiques</div><div class="item-desc">Perche, flotteur, carte mémoire fournis</div></td>
+              <td class="num">37 €</td><td class="num">34 €</td><td class="num">30 €</td><td class="num caution">450 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Kit PMT + caméra</div></td>
+              <td class="num">50 €</td><td class="num">43 €</td><td class="num">35 €</td><td class="num caution">500 €</td>
+            </tr>
+            <tr>
+              <td><div class="item-name">Palmes + Easybreath + caméra</div></td>
+              <td class="num">50 €</td><td class="num">43 €</td><td class="num">35 €</td><td class="num caution">500 €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="modalites">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Modalités pratiques</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Retrait & livraison</h3>
+          <p>Retrait à l'Ermitage, à 5 minutes à pied de la plage de Saint-Gilles. Livraison possible selon créneau et disponibilité.</p>
+        </div>
+        <div class="info-card">
+          <h3>Annulation</h3>
+          <p>Remboursement intégral si annulation plus de 72h avant, 50% entre 72h et 24h, aucun remboursement en dessous de 24h.</p>
+        </div>
+        <div class="info-card">
+          <h3>Modification</h3>
+          <p>Changement de date sans frais si la nouvelle réservation est de même durée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reserver">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>Prêt pour le lagon ?</h2>
+          <p>Écrivez-nous pour vérifier les disponibilités et fixer votre créneau de retrait — la réservation en ligne arrive bientôt.</p>
+        </div>
+        <div>
+          <a class="btn btn-primary" href="mailto:contact@kitlagon.re">Écrire à Kit Lagon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="logo">Kit Lagon</div>
+      <p>Location de matériel de plage et de snorkeling — Saint-Gilles-les-Bains, La Réunion.</p>
+    </div>
+    <div>
+      <p><a class="mail" href="mailto:contact@kitlagon.re">contact@kitlagon.re</a></p>
+      <p>© 2026 Kit Lagon</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
